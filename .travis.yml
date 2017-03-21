@@ -11,4 +11,4 @@ before_script:
   - sudo apt-get install gbs -y --force-yes
 
 script:
-  - "bash -ex .travis-ci.sh"
+  - "gbs -c .travis-gbs.conf build -A armv7l"
