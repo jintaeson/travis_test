@@ -1,5 +1,6 @@
+language: java
 
-language: erlang
+sudo: required
 
 env:
   - ARCH=x64
