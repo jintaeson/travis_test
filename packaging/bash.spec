@@ -1,4 +1,5 @@
-%define run_tests 0
+
+ch%define run_tests 0
 %if %{run_tests}
     # check is defined off at .rpmmacros file.
     %undefine check
@@ -31,6 +32,7 @@ incorporates useful features from the Korn shell (ksh) and the C shell
 cp %{SOURCE1001} .
 
 %build
+chmod +x configure
 %configure --enable-largefile \
             --without-bash-malloc \
             --disable-nls \
