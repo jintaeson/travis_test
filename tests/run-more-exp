@@ -1,0 +1,3 @@
+source ./test_config
+${THIS_SH} ./more-exp.tests 2>&1 | grep -v '^expect' > /tmp/xx
+diff /tmp/xx more-exp.right ;result_check; rm -f /tmp/xx

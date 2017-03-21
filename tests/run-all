@@ -1,0 +1,64 @@
+#! /bin/sh
+
+PATH=.:$PATH	# just to get recho/zecho/printenv if not run via `make tests'
+export PATH
+
+# unset BASH_ENV only if it is set
+[ "${BASH_ENV+set}" = "set" ] && unset BASH_ENV
+# ditto for SHELLOPTS
+#[ "${SHELLOPTS+set}" = "set" ] && unset SHELLOPTS
+
+: ${THIS_SH:=../bash}
+export THIS_SH
+
+${THIS_SH} ./version
+BASH_VER=`${THIS_SH} ./version | grep version | awk '{print $2}'`
+
+: ${TEST_LOG:=/tmp/bash_test}
+export TEST_LOG
+rm -f ${TEST_LOG}
+
+rm -f /tmp/xx
+
+# Color
+Color_Off='\e[0m'       # Text Reset
+
+# Regular Colors
+Red='\e[0;31m'          # Red
+Green='\e[0;32m'        # Green
+Cyan='\e[0;36m'         # Cyank
+
+# Bold
+BWhite='\e[1;37m'       # White
+
+echo Any output from any test, unless otherwise noted, indicates a possible anomaly
+
+for x in run-*
+do
+    case $x in
+    $0|run-minimal|run-gprof)   ;;
+    *.orig|*~) ;;
+    *)
+        echo -e "${BWhite}TEST${Color_Off}: $x" ;
+        sh $x
+        ;;
+    esac
+done
+
+TOTAL_CNT=`grep "TEST:" ${TEST_LOG} | wc -l`
+PASS_CNT=`grep "PASS:" ${TEST_LOG} | wc -l`
+FAIL_CNT=`grep "FAIL:" ${TEST_LOG} | wc -l`
+SKIP_CNT=`grep "SKIP:" ${TEST_LOG} | wc -l`
+
+br='==================='; br=$br$br$br$br;
+
+echo -e "${Green}$br ${Color_Off}"
+echo -e "${Green}Test sheet summary for bash ${BASH_VER}${Color_Off}"
+echo -e "${Green}$br ${Color_Off}"
+echo -e "#${BWhite} TOTAL: $TOTAL_CNT ${Color_Off}"
+echo -e "#${Green} PASS${Color_Off} : $PASS_CNT"
+echo -e "#${Red} FAIL${Color_Off} : $FAIL_CNT"
+echo -e "#${Cyan} SKIP${Color_Off} : $SKIP_CNT"
+echo -e "${Green}$br ${Color_Off}"
+
+exit 0

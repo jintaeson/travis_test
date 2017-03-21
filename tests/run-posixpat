@@ -1,0 +1,3 @@
+source ./test_config
+${THIS_SH} ./posixpat.tests > /tmp/xx
+diff /tmp/xx posixpat.right ;result_check; rm -f /tmp/xx

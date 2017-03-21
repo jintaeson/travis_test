@@ -1,0 +1,5 @@
+PATH=$PATH:`pwd`
+export PATH
+source ./test_config
+${THIS_SH} ./glob-test 2>&1 | grep -v '^expect' > /tmp/xx
+diff /tmp/xx glob.right ;result_check; rm -f /tmp/xx

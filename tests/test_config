@@ -1,0 +1,23 @@
+# Color
+Color_Off='\e[0m'       # Text Reset
+
+# Regular Colors
+Red='\e[0;31m'          # Red
+Green='\e[0;32m'        # Green
+Cyan='\e[0;36m'         # Cyan
+
+result_check() {
+if [ $? -eq 0 ]
+then
+    echo -e "${Green}PASS${Color_Off}: $(basename $0)"
+    echo "TEST: PASS: $(basename $0)" >> ${TEST_LOG}
+else
+    echo -e "${Red}FAIL${Color_Off}: $(basename $0)"
+    echo -e "TEST: FAIL: $(basename $0)" >> ${TEST_LOG}
+fi
+}
+
+skip_test() {
+    echo -e "${Cyan}SKIP${Color_Off}: $(basename $0)"
+    echo "TEST: SKIP: $(basename $0)" >> ${TEST_LOG}
+}

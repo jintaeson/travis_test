@@ -1,0 +1,3 @@
+source ./test_config
+${THIS_SH} ./rhs-exp.tests 2>&1 > /tmp/xx
+diff /tmp/xx rhs-exp.right ;result_check; rm -f /tmp/xx

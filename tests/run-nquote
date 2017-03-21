@@ -1,0 +1,3 @@
+source ./test_config
+${THIS_SH} ./nquote.tests 2>&1 | grep -v '^expect' > /tmp/xx
+diff /tmp/xx nquote.right ;result_check; rm -f /tmp/xx

@@ -1,0 +1,3 @@
+source ./test_config
+${THIS_SH} ./posix2.tests 2>&1 | grep -v '^expect' > /tmp/xx
+diff /tmp/xx posix2.right ;result_check; rm -f /tmp/xx

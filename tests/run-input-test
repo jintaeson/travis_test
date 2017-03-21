@@ -1,0 +1,3 @@
+source ./test_config
+${THIS_SH} < ./input-line.sh > /tmp/xx
+diff /tmp/xx input.right ;result_check; rm -f /tmp/xx
