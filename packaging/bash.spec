@@ -1,5 +1,4 @@
-
-ch%define run_tests 0
+%define run_tests 0
 %if %{run_tests}
     # check is defined off at .rpmmacros file.
     %undefine check
