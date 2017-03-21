@@ -1,4 +1,4 @@
-language: java
+2language: java
 
 sudo: required
 
@@ -7,7 +7,7 @@ env:
   - ARCH=arm
 
 before_script:
-  - echo "deb http://download.tizen.org/tools/latest-release/Ubuntu_16.04/ /" | sudo tee -a /etc/apt/sources.list
+  - echo "deb http://download.tizen.org/tools/latest-release/Ubuntu_12.04/ /" | sudo tee -a /etc/apt/sources.list
   - sudo apt-get update -qq
   - sudo apt-get install gbs -y
   
